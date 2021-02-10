@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quoteme/Screens/AboutScreen.dart';
 import 'package:sad_lib/CustomWidgets.dart';
 import '../Utils/Colors.dart';
 
@@ -178,6 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
       }else {
         //code here
         print("1");
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => AboutScreen()));
       }
     });
   }
