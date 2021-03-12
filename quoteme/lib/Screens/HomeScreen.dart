@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quoteme/Screens/AboutScreen.dart';
+import 'package:quoteme/Screens/LiveSceen.dart';
+import 'package:quoteme/Screens/ViewQuoteScreen.dart';
 import 'package:sad_lib/CustomWidgets.dart';
-import '../Utils/Colors.dart';
+import '../Utils/Colors.dart' as colors;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -10,7 +12,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Size _size;
-  ColorsClass _colors;
 
   final List<Map> _categories = [
     {
@@ -37,112 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    _colors = ColorsClass();
     super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _size = MediaQuery.of(context).size;
-    return Material(
-      color: _colors.bg,
-      child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: CustomScrollView(
-                physics: BouncingScrollPhysics(),
-                slivers: [
-                  SliverAppBar(
-                    automaticallyImplyLeading: false,
-                    backgroundColor: _colors.bg,
-                    elevation: 0.0,
-                    forceElevated: true,
-                    floating: true,
-                    pinned: true,
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextView(
-                          text: "Quote Me",
-                          size: 22.0,
-                          fontWeight: FontWeight.w600,
-                          color: _colors.white,
-                          letterSpacing: -1.1,
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            _showPopupMenu();
-                          },
-                          icon: Icon(Icons.menu_rounded, size: 30.0, color: _colors.white,),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SliverList(
-                    delegate: SliverChildListDelegate.fixed([
-                      SingleChildScrollView(
-                        physics: BouncingScrollPhysics(),
-                        padding: EdgeInsets.all(10.0),
-                        scrollDirection: Axis.vertical,
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextView.rich(
-                                  textSpan: [
-                                    TextView(
-                                      text: "Go ",
-                                      size: 20.0,
-                                      fontWeight: FontWeight.w400,
-                                      color: _colors.white,
-                                      letterSpacing: -1.2,
-                                    ),
-                                    TextView(
-                                      text: "Live ",
-                                      size: 22.0,
-                                      fontWeight: FontWeight.w600,
-                                      color: _colors.white,
-                                      letterSpacing: -1.1,
-                                    ),
-                                    TextView(
-                                      text: "with your own quotes!",
-                                      size: 20.0,
-                                      fontWeight: FontWeight.w400,
-                                      color: _colors.white,
-                                      letterSpacing: -1.2,
-                                    ),
-                                  ],
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.arrow_forward_ios_rounded, size: 30.0, color: _colors.white,),
-                                ),
-                              ],
-                            ),
-                            _featuredQuote(),
-
-                            for(int i = 0; i < _categories.length; i++)
-                              _category(
-                                onPressed: () {},
-                                imgStr: _categories[i]["image"].toString(),
-                                title: _categories[i]["title"],
-                                desc: _categories[i]["desc"],
-                              ),
-                          ],
-                        ),
-                      ),
-                    ]),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   void _showPopupMenu(){
@@ -154,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
         PopupMenuItem<String>(
             child: Row(
               children: [
-                Icon(Icons.favorite_border_outlined, size: 30.0, color: _colors.primary,),
+                Icon(Icons.favorite_border_outlined, size: 30.0, color: colors.primary,),
                 SizedBox(width: 10.0,),
                 Text('Favorites'),
               ],
@@ -162,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
         PopupMenuItem<String>(
             child: Row(
               children: [
-                Icon(Icons.info_outline, size: 30.0, color: _colors.primary,),
+                Icon(Icons.info_outline, size: 30.0, color: colors.primary,),
                 SizedBox(width: 10.0,),
                 Text('About'),
               ],
@@ -182,13 +78,123 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     });
   }
-  
+
+  @override
+  Widget build(BuildContext context) {
+    _size = MediaQuery.of(context).size;
+    return Material(
+      color: colors.bg,
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CustomScrollView(
+                physics: BouncingScrollPhysics(),
+                slivers: [
+                  SliverAppBar(
+                    automaticallyImplyLeading: false,
+                    backgroundColor: colors.bg,
+                    elevation: 0.0,
+                    forceElevated: true,
+                    floating: true,
+                    pinned: true,
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextView(
+                          text: "Quote Me",
+                          size: 22.0,
+                          fontWeight: FontWeight.w600,
+                          color: colors.white,
+                          letterSpacing: -1.1,
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            _showPopupMenu();
+                          },
+                          icon: Icon(Icons.menu_rounded, size: 30.0, color: colors.white,),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SliverList(
+                    delegate: SliverChildListDelegate.fixed([
+                      SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
+                        padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0, top: 20.0),
+                        scrollDirection: Axis.vertical,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextView.rich(
+                                  textSpan: [
+                                    TextView(
+                                      text: "Go ",
+                                      size: 20.0,
+                                      fontWeight: FontWeight.w400,
+                                      color: colors.white,
+                                      letterSpacing: -1.2,
+                                    ),
+                                    TextView(
+                                      text: "Live ",
+                                      size: 22.0,
+                                      fontWeight: FontWeight.w600,
+                                      color: colors.white,
+                                      letterSpacing: -1.1,
+                                    ),
+                                    TextView(
+                                      text: "with your own quotes!",
+                                      size: 20.0,
+                                      fontWeight: FontWeight.w400,
+                                      color: colors.white,
+                                      letterSpacing: -1.2,
+                                    ),
+                                  ],
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LiveScreen()));
+                                  },
+                                  icon: Icon(Icons.arrow_forward_ios_rounded, size: 30.0, color: colors.white,),
+                                ),
+                              ],
+                            ),
+                            _featuredQuote(),
+
+                            for(int i = 0; i < _categories.length; i++)
+                              _category(
+                                onPressed: () {
+                                  if(i == 0) {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewQuoteScreen()));
+                                  }
+                                },
+                                imgStr: _categories[i]["image"].toString(),
+                                title: _categories[i]["title"],
+                                desc: _categories[i]["desc"],
+                              ),
+                          ],
+                        ),
+                      ),
+                    ]),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _featuredQuote() {
     return Container(
       margin: EdgeInsets.only(bottom: 60.0, top: 20.0),
       padding: EdgeInsets.all(20.0),
       decoration: BoxDecoration(
-        color: _colors.mediumGrey,
+        color: colors.mediumGrey,
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: Column(
@@ -196,7 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
           TextView(
             text: "\"I'm selfish, impatient and a little insecure. I make mistakes, I am out of control\"",
             maxLines: 3,
-            color: _colors.white,
+            color: colors.white,
             size: 20.0,
             fontWeight: FontWeight.w400,
             align: TextAlign.center,
@@ -205,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           TextView(
             text: "― Jane Doe",
-            color: _colors.primary,
+            color: colors.primary,
             size: 15.0,
             fontWeight: FontWeight.w400,
             align: TextAlign.center,
@@ -223,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
         margin: EdgeInsets.only(bottom: 10.0),
         padding: EdgeInsets.all(20.0),
         decoration: BoxDecoration(
-          color: _colors.darkGrey,
+          color: colors.darkGrey,
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: Row(
@@ -240,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   TextView(
                     text: title,
                     size: 18.0,
-                    color: _colors.primary,
+                    color: colors.primary,
                     fontWeight: FontWeight.w600,
                     align: TextAlign.left,
                     padding: EdgeInsets.only(bottom: 5.0),
@@ -248,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   TextView(
                     text: desc,
                     size: 12.0,
-                    color: _colors.white,
+                    color: colors.white,
                     fontWeight: FontWeight.w400,
                     maxLines: 3,
                   ),

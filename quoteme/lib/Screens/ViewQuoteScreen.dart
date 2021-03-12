@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:sad_lib/CustomWidgets.dart';
 import '../Utils/Colors.dart' as colors;
 
-// ignore: must_be_immutable
-class AboutScreen extends StatelessWidget {
+class ViewQuoteScreen extends StatefulWidget {
+  @override
+  _ViewQuoteScreenState createState() => _ViewQuoteScreenState();
+}
 
+class _ViewQuoteScreenState extends State<ViewQuoteScreen> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -43,7 +46,7 @@ class AboutScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 TextView(
-                                  text: "About",
+                                  text: "Love Quotes",
                                   size: 24.0,
                                   fontWeight: FontWeight.w400,
                                   color: colors.white,
@@ -52,7 +55,7 @@ class AboutScreen extends StatelessWidget {
                                   padding: EdgeInsets.only(top: 2.5),
                                 ),
                                 TextView(
-                                  text: "A basic app used to fetch each quote and share with a friend or loved one, Quote Me gives you the user the opportunity to share your own personal quotes for persons to share with others!",
+                                  text: "You know you're in love when you can't fall asleep because reality is finally better than your dreams.",
                                   size: 24.0,
                                   fontWeight: FontWeight.w300,
                                   color: colors.white,
@@ -71,14 +74,23 @@ class AboutScreen extends StatelessWidget {
               ),
             ),
             Align(
-              alignment: Alignment.bottomRight,
-              child: TextView(
-                text: "Version 1.0",
-                size: 18.0,
-                fontWeight: FontWeight.w400,
-                color: colors.white,
-                letterSpacing: -1.2,
-                padding: EdgeInsets.only(bottom: 10.0, right: 10.0),
+              alignment: Alignment.bottomCenter,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ButtonView(
+                    onPressed: () {},
+                    child: Icon(Icons.favorite_border, size: 40.0, color: colors.white,),
+                    padding: EdgeInsets.all(5.0),
+                    margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+                  ),
+                  ButtonView(
+                    onPressed: () {},
+                    child: Icon(Icons.share, size: 40.0, color: colors.primary,),
+                    padding: EdgeInsets.all(5.0),
+                    margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+                  ),
+                ],
               ),
             ),
           ],
@@ -87,3 +99,4 @@ class AboutScreen extends StatelessWidget {
     );
   }
 }
+
