@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quoteme/Screens/AboutScreen.dart';
+import 'package:quoteme/Screens/FavoritesScreen.dart';
 import 'package:quoteme/Screens/LiveSceen.dart';
 import 'package:quoteme/Screens/ViewQuoteScreen.dart';
 import 'package:sad_lib/CustomWidgets.dart';
@@ -71,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
       if(itemSelected == "0"){
         //code here
         print("0");
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => FavoritesScreen()));
       }else {
         //code here
         print("1");
