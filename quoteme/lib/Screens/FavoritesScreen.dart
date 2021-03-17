@@ -108,11 +108,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> with SingleTickerProv
       itemBuilder: (context) => [
         PopupMenuItem<int>(
           value: 0,
-          child: TextView(text: 'Share', color: colors.white, size: 12.0,),
+          child: TextView(text: 'Share', color: colors.white, size: 15.0,),
         ),
         PopupMenuItem<int>(
           value: 1,
-          child: TextView(text: 'Delete', color: colors.red, size: 12.5,),
+          child: TextView(text: 'Delete', color: colors.red, size: 15.0,),
         ),
       ],
     );

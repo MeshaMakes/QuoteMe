@@ -170,7 +170,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               _category(
                                 onPressed: () {
                                   if(i == 0) {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewQuoteScreen()));
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewQuoteScreen(quoteType: "love",)));
+                                  }
+                                  if(i == 1) {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewQuoteScreen(quoteType: "happy",)));
+                                  }
+                                  if(i == 2) {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewQuoteScreen(quoteType: "life",)));
+                                  }
+                                  if(i == 3) {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewQuoteScreen(quoteType: "random",)));
                                   }
                                 },
                                 imgStr: _categories[i]["image"].toString(),
