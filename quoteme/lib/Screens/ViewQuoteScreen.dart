@@ -22,6 +22,8 @@ class _ViewQuoteScreenState extends State<ViewQuoteScreen> {
   PageController pageController;
   String quoteType;
 
+  List<String> quotes;
+
   @override
   void initState() {
     pageController = PageController(keepPage: true);
@@ -86,6 +88,7 @@ class _ViewQuoteScreenState extends State<ViewQuoteScreen> {
                   if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
                     return buildPageView(snapshot);
                   } if(!snapshot.hasData) {
+                    print(snapshot.error.toString());
                     return Center(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -155,7 +158,19 @@ class _ViewQuoteScreenState extends State<ViewQuoteScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ButtonView(
-                    onPressed: () {},
+                    onPressed: () {
+                      var snackbar = SnackBar(
+                        content: TextView(
+                          text: "Added to favorites",
+                          size: 18.0,
+                          color: colors.white,
+                          letterSpacing: 1.5,
+                          fontWeight: FontWeight.w400,
+                          align: TextAlign.center,
+                        ),
+                      );
+                      Scaffold.of(context).showSnackBar(snackbar);
+                    },
                     child: Icon(Icons.favorite_border, size: 40.0, color: colors.white,),
                     padding: EdgeInsets.all(5.0),
                     margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
@@ -163,7 +178,7 @@ class _ViewQuoteScreenState extends State<ViewQuoteScreen> {
                   ButtonView(
                     onPressed: () {
                       if(snapshot.data[index].q != null && snapshot.data[index].q.isNotEmpty) {
-                        Share.share('Quote Me:\n${snapshot.data[index].q}');
+                        Share.share('Quote Me:\n\n${snapshot.data[index].q}');
                       }
                     },
                     child: Icon(Icons.share, size: 40.0, color: colors.primary,),
