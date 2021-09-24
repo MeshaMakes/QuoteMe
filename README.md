@@ -25,7 +25,5 @@ Quote Me is a pretty basic *quote generating app* 📝 made using Flutter as fro
 
 ---
 
-Once you run the app you should be opened up to this page where you can then enter the markdown view:
-
-![up276o3ov0gpwdkhio0v](https://user-images.githubusercontent.com/53268895/117575303-34691780-b0af-11eb-893f-1df408797b16.jpg)
+![Quote Me](https://user-images.githubusercontent.com/53268895/134673793-e3257eed-e8d8-4ec7-9e58-22359b30a653.png)
 
